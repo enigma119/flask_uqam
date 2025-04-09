@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - NGO Group{% endblock %}
+
+{% block content %}
+<section class="section-spacing">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center mb-5">
+                <h2 class="service-header-subtitle">Contactez-nous</h2>
+                <p class="lead">
+                    Notre ONG s'engage à créer un impact positif dans les communautés à travers le monde. 
+                    Nous sommes dédiés à l'amélioration des conditions de vie, à l'éducation, et au soutien 
+                    des personnes dans le besoin. Votre message est important pour nous, et nous sommes là 
+                    pour répondre à toutes vos questions concernant nos projets humanitaires et nos initiatives.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body w-auto">
+                        <form method="POST" action="{{ url_for('contact') }}" class="contact-form">
+                            <div class="mb-3">
+                                <label for="nom" class="form-label">Nom complet</label>
+                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom complet" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Adresse email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="votre@email.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sujet" class="form-label">Sujet</label>
+                                <input type="text" class="form-control" id="sujet" name="sujet" placeholder="Sujet de votre message" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn bg-custom-primary text-white">Envoyer le message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mt-5">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="bi bi-geo-alt fs-2 text-primary"></i>
+                                <h5 class="card-title mt-3">Adresse</h5>
+                                <p class="card-text">
+                                    <a href="https://maps.google.com/?q=2568+Rue+Notre+Dame+Lachine+QC+H8P+1J3" 
+                                       class="text-dark text-decoration-none" 
+                                       target="_blank">
+                                        2568 Rue Notre Dame<br>Lachine, QC, H8P 1J3
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="bi bi-telephone fs-2 text-primary"></i>
+                                <h5 class="card-title mt-3">Téléphone</h5>
+                                <a href="tel:+15143122345" class="text-decoration-none text-dark">+1 514 312 2345</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="bi bi-envelope fs-2 text-primary"></i>
+                                <h5 class="card-title mt-3">Email</h5>
+                                <a href="mailto:contact@ngogroup.org" class="text-decoration-none text-dark">contact@ngogroup.org</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

@@ -1,0 +1,28 @@
+<!-- About Section -->
+<section class="section-spacing" id="about">
+    <div class="container bg-light">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='images/about-us.jpeg') }}" alt="À Propos" class="img-fluid">
+            </div>
+            <div class="col-md-6 px-5">
+                <h3 class="service-header-title">À PROPOS DE NOUS</h3>
+                <h2 class="service-header-subtitle fw-bold">Une organisation caritative indépendante</h2>
+                <p>Nous nous consacrons à créer un impact positif dans les communautés à travers le Cameroun et
+                    l'Afrique. Notre mission se concentre sur l'éducation des jeunes, l'accès aux soins de santé, et la
+                    lutte contre la pauvreté dans les zones rurales.</p>
+                <p>Depuis notre création en 2015, nous avons accompagné plus de 5000 jeunes dans leur parcours
+                    éducatif, construit 12 centres de santé communautaires, et mis en place des programmes de
+                    microfinance qui ont aidé plus de 1000 familles à développer leurs activités génératrices de
+                    revenus. Notre équipe de bénévoles dévoués travaille en étroite collaboration avec les
+                    communautés locales pour garantir des solutions durables et adaptées aux besoins spécifiques
+                    de chaque région.</p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('donate') }}" class="btn btn-primary">Faire un Don</a>
+                    <a href="https://www.behance.net/gallery/149702503/NGO-Organization-Website" target="_blank"
+                        class="btn btn-outline-primary">En Savoir Plus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Devenir Bénévole - NGO Group{% endblock %}
+
+{% block content %}
+<section class="section-spacing">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center mb-5">
+                <h2 class="service-header-subtitle">Devenir Bénévole</h2>
+                <p class="lead">
+                    Rejoignez notre équipe de bénévoles dévoués et faites une différence dans la vie des autres. 
+                    En tant que bénévole, vous aurez l'opportunité de participer à des projets significatifs, 
+                    d'acquérir de nouvelles compétences et de contribuer à créer un impact positif dans nos communautés. 
+                    Que vous ayez quelques heures par semaine ou plus à offrir, chaque contribution compte.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Domaines d'intervention</h4>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-book text-primary fs-4 me-2"></i>
+                                    <p class="mb-0">Soutien éducatif</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-heart-pulse text-primary fs-4 me-2"></i>
+                                    <p class="mb-0">Assistance médicale</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-house-heart text-primary fs-4 me-2"></i>
+                                    <p class="mb-0">Aide aux sans-abris</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-globe text-primary fs-4 me-2"></i>
+                                    <p class="mb-0">Projets environnementaux</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Formulaire d'inscription</h4>
+                        <form method="POST" action="{{ url_for('volunteer') }}" class="volunteer-form">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom Complet</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Adresse email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="availability" class="form-label">Disponibilité</label>
+                                <select class="form-select" id="availability" name="availability" required>
+                                    <option value="">Choisissez votre disponibilité</option>
+                                    <option value="Journée">Journée</option>
+                                    <option value="Soirée">Soirée</option>
+                                    <option value="Fins de semaine">Fins de semaine</option>
+                                    <option value="Variable">Variable</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="motivation" class="form-label">Votre motivation</label>
+                                <textarea class="form-control" id="motivation" name="motivation" rows="4" required 
+                                    placeholder="Décrivez brièvement ce qui vous motive à devenir bénévole..."></textarea>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn bg-custom-primary text-white">
+                                    <i class="bi bi-heart me-2"></i>Devenir Bénévole
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

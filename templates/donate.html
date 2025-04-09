@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Faire un don - NGO Group{% endblock %}
+
+{% block content %}
+<section class="section-spacing">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center mb-5">
+                <h2 class="service-header-subtitle">Faire un don</h2>
+                <p class="lead">
+                    Votre générosité fait la différence. Chaque don nous aide à poursuivre notre mission 
+                    d'aide aux communautés dans le besoin. Nous nous engageons à utiliser vos dons de 
+                    manière transparente et efficace pour maximiser leur impact sur nos projets humanitaires, 
+                    qu'il s'agisse d'éducation, de santé, d'aide aux sans-abris ou de protection de l'environnement.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" action="{{ url_for('donate') }}" class="donation-form">
+                            <div class="mb-3">
+                                <label for="nom" class="form-label">Nom complet</label>
+                                <input type="text" class="form-control" id="nom" name="nom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Adresse email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="pays" class="form-label">Pays</label>
+                                <select class="form-select" id="pays" name="pays" required>
+                                    <option value="">Sélectionnez votre pays</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="US">Etats-Unis</option>
+                                    <option value="MX">Mexique</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="montant" class="form-label">Montant du don ($)</label>
+                                <input type="number" class="form-control" id="montant" name="montant" min="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message (optionnel)</label>
+                                <textarea class="form-control" id="message" name="message" rows="3" 
+                                    placeholder="Laissez un message ou précisez l'utilisation souhaitée de votre don..."></textarea>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn bg-custom-primary text-white">
+                                    <i class="bi bi-heart-fill me-2"></i>Faire un don
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

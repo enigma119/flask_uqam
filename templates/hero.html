@@ -1,0 +1,21 @@
+<section class="hero-section min-vh-70 custom-hero" id="hero">
+    <div class="bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="row offset-lg-3 justify-content-md-center">
+                    <div class="col-md-auto">
+                        <h1>Un petit geste peut rendre leurs cœurs plus heureux</h1>
+                        <p class="lead">Plus de 10 000 enfants attendent de l'aide</p>
+                        <div class="d-flex gap-3">
+                            <a href="{{ url_for('donate') }}" class="btn btn-primary rounded-pill">Faire un Don</a>
+                            <a href="{{ url_for('volunteer') }}" class="btn btn-outline-primary rounded-pill">Devenir Membre</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Enfants dans le besoin" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section> 

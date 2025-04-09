@@ -1,0 +1,38 @@
+<section class="section-spacing" id="mission">
+    <div class="container">
+        <h3 class="service-header-title text-center">Nos Missions</h3>
+        <h2 class="service-header-subtitle fw-bold text-center mb-5">Nos Domaines d'Action</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/education.jpg') }}" class="card-img-top" alt="Éducation">
+                    <div class="card-body">
+                        <h5 class="card-title">Éducation pour Tous</h5>
+                        <p class="card-text">Nous construisons des écoles et soutenons l'éducation des enfants défavorisés au Cameroun, avec un accent particulier sur l'accès des filles à l'éducation.</p>
+                        <a href="{{ url_for('volunteer') }}" class="btn btn-primary">Devenir Bénévole</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/medical.jpg') }}" class="card-img-top" alt="Santé">
+                    <div class="card-body">
+                        <h5 class="card-title">Accès aux Soins de Santé</h5>
+                        <p class="card-text">Nous équipons des centres de santé ruraux et organisons des campagnes de vaccination pour les communautés isolées.</p>
+                        <a href="{{ url_for('volunteer') }}" class="btn btn-primary">Devenir Bénévole</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/homeless.jpg') }}" class="card-img-top" alt="Logement">
+                    <div class="card-body">
+                        <h5 class="card-title">Développement Communautaire</h5>
+                        <p class="card-text">Nous accompagnons les familles vulnérables avec des programmes de microfinance et de formation professionnelle.</p>
+                        <a href="{{ url_for('volunteer') }}" class="btn btn-primary">Devenir Bénévole</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
