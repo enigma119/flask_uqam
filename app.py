@@ -5,7 +5,8 @@ from flask import (
     redirect,
     url_for,
     flash,
-    session
+    session,
+    jsonify
 )
 from database import db
 from security import (
@@ -19,8 +20,10 @@ from security import (
     admin_required
 )
 from datetime import datetime, timedelta
-
+from flask_json_schema import JsonSchema, JsonValidationError
+from schema import volunteer_schema
 app = Flask(__name__)
+schema = JsonSchema(app)
 app.secret_key = 'my_super_secret_key'
 
 # Configuration de la session
@@ -405,10 +408,66 @@ def admin_reset_password():
 
     return render_template('admin/reset_password.html')
 
+@app.route('/api/volunteers', methods=['POST'])
+@schema.validate(volunteer_schema)
+def create_volunteer():
+    data = request.get_json()
+    db.create_volunteer(data['name'], data['email'], data['phone'],
+                        data['availability'], data['motivation'])
+    return jsonify({'message': 'Volontariat créé avec succès.'}), 201
+
+@app.route('/api/volunteers', methods=['GET'])
+def get_volunteers():
+    volunteers = db.get_all_volunteers()
+    return jsonify(volunteers), 200
+
+@app.route('/api/volunteers/<int:volunteer_id>', methods=['GET'])
+def get_volunteer(volunteer_id):
+    volunteer = db.get_volunteer_by_id(volunteer_id)
+    if not volunteer:
+        return jsonify({'error': 'Volontariat non trouvé.'}), 404
+    return jsonify(volunteer), 200
+
+# update volunteer
+@app.route('/api/volunteers/<int:volunteer_id>', methods=['PUT'])
+@schema.validate(volunteer_schema)
+def update_volunteer(volunteer_id):
+    data = request.get_json()
+    db.update_volunteer(volunteer_id, data)
+    return jsonify({'message': 'Volontariat mis à jour avec succès.'}), 200
+
+# delete volunteer
+@app.route('/api/volunteers/<int:volunteer_id>', methods=['DELETE'])
+def delete_volunteer(volunteer_id):
+    db.delete_volunteer(volunteer_id)
+    return jsonify({'message': 'Volontariat supprimé avec succès.'}), 200
+
+@app.route('/api/volunteers/search', methods=['GET'])
+def filter_volunteers():
+    name = request.args.get('name', '')
+    email = request.args.get('email', '')
+    page = request.args.get('page', '1')
+    
+    try:
+        page = int(page)
+    except ValueError:
+        page = 1
+        
+    result = db.search_volunteers(name=name, email=email, page=page)
+    return jsonify(result), 200
+
+@app.route('/api/doc', methods=['GET'])
+def doc():
+    return render_template('doc.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
+
+@app.errorhandler(JsonValidationError)
+def validation_error(e):
+    errors = [validation_error.message for validation_error in e.errors]
+    return jsonify({'error': e.message, 'errors': errors}), 400
 
 
 if __name__ == '__main__':

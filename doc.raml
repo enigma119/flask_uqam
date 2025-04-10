@@ -1,0 +1,168 @@
+#%RAML 1.0
+title: NGO Website API
+version: v1
+baseUri: http://localhost:5000/api
+mediaType: application/json
+
+types:
+  Volunteer:
+    type: object
+    properties:
+      id: integer
+      name: string
+      email: string
+      phone: string
+      availability: string
+      motivation: string
+      status: string
+      created_at: datetime
+    example:
+      id: 1
+      name: "John Doe"
+      email: "john@example.com"
+      phone: "123-456-7890"
+      availability: "Weekends"
+      motivation: "I want to help"
+      status: "active"
+      created_at: "2024-03-20T10:00:00Z"
+
+  VolunteerInput:
+    type: object
+    properties:
+      name: string
+      email: string
+      phone: string
+      availability: string
+      motivation: string
+    required: [name, email, phone, availability]
+    example:
+      name: "Jean Dupont"
+      email: "jean.dupont@example.com"
+      phone: "514-555-0123"
+      availability: "Weekends"
+      motivation: "Je souhaite aider les autres"
+
+  SearchResponse:
+    type: object
+    properties:
+      volunteers: 
+        type: array
+        items:
+          type: object
+          properties:
+            id: integer
+            name: string
+            email: string
+            phone: string
+            availability: string
+            motivation: string
+            status: string
+            created_at: datetime
+      total: integer
+      page: integer
+      per_page: integer
+      total_pages: integer
+    example:
+      volunteers:
+        - id: 1
+          name: "John Doe"
+          email: "john@example.com"
+          phone: "123-456-7890"
+          availability: "Weekends"
+          motivation: "I want to help"
+          status: "active"
+          created_at: "2024-03-20T10:00:00Z"
+      total: 42
+      page: 1
+      per_page: 5
+      total_pages: 9
+
+  MessageResponse:
+    type: object
+    properties:
+      message: string
+    example:
+      message: "Volontariat créé avec succès."
+
+/api/volunteers:
+  get:
+    description: Obtenir la liste de tous les volontaires
+    responses:
+      200:
+        body:
+          application/json:
+            type: SearchResponse
+      500:
+        description: Erreur interne du serveur
+  
+  post:
+    description: Créer un nouveau volontaire
+    body:
+      application/json:
+        type: VolunteerInput
+    responses:
+      201:
+        body:
+          application/json:
+            type: MessageResponse
+      400:
+        description: Données invalides
+  /{id}:
+    uriParameters:
+      id:
+        type: integer
+        required: true
+        description: ID du volontaire
+    get:
+      description: Obtenir les détails d'un volontaire
+      responses:
+        200:
+          body:
+            application/json:
+              type: Volunteer
+        404:
+          description: Volontaire non trouvé
+    put:
+      description: Mettre à jour un volontaire
+      body:
+        application/json:
+          type: VolunteerInput
+      responses:
+        200:
+          body:
+            application/json:
+              type: MessageResponse
+        404:
+          description: Volontaire non trouvé
+    delete:
+      description: Supprimer un volontaire
+      responses:
+        200:
+          body:
+            application/json:
+              type: MessageResponse
+        404:
+          description: Volontaire non trouvé
+
+  /search:
+    get:
+      description: Rechercher des volontaires avec filtrage et pagination
+      queryParameters:
+        name:
+          type: string
+          required: false
+          description: Filtre par nom
+        email:
+          type: string
+          required: false
+          description: Filtre par email
+        page:
+          type: integer
+          required: false
+          default: 1
+          description: Numéro de page
+      responses:
+        200:
+          body:
+            application/json:
+              type: SearchResponse

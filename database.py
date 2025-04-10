@@ -247,6 +247,54 @@ class Database:
         params = (admin_id, token, expires_at)
         return self.execute_query(query, params)
 
+    def search_volunteers(self, name='', email='', page=1, per_page=5):
+        """Recherche des bénévoles avec filtrage et pagination"""
+        offset = (page - 1) * per_page
+        
+        # Construction de la requête de base
+        query = '''
+            SELECT * FROM volunteers
+            WHERE 1=1
+        '''
+        params = []
+        
+        # Ajout des conditions de filtrage
+        if name:
+            query += ' AND LOWER(name) LIKE LOWER(?)'
+            params.append(f'%{name}%')
+        if email:
+            query += ' AND LOWER(email) LIKE LOWER(?)'
+            params.append(f'%{email}%')
+            
+        # Ajout de la pagination
+        query += ' ORDER BY created_at DESC LIMIT ? OFFSET ?'
+        params.extend([per_page, offset])
+        
+        # Exécution de la requête
+        volunteers = self.execute_query(query, params)
+        
+        # Récupération du nombre total de résultats
+        count_query = '''
+            SELECT COUNT(*) as total FROM volunteers WHERE 1=1
+        '''
+        count_params = []
+        if name:
+            count_query += ' AND LOWER(name) LIKE LOWER(?)'
+            count_params.append(f'%{name}%')
+        if email:
+            count_query += ' AND LOWER(email) LIKE LOWER(?)'
+            count_params.append(f'%{email}%')
+            
+        total = self.execute_query(count_query, count_params)[0]['total']
+        
+        return {
+            'volunteers': volunteers,
+            'total': total,
+            'page': page,
+            'per_page': per_page,
+            'total_pages': (total + per_page - 1) // per_page
+        }
+
 
 # Instance globale de la base de données
 db = Database()
