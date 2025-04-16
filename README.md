@@ -2,7 +2,6 @@
 
 Un site web moderne pour une organisation non gouvernementale (ONG) développé avec Flask.
 
-
 ## Pour se connecter
 
 **email**: admin@example.com
@@ -21,6 +20,7 @@ Ce site web est conçu pour faciliter la communication entre l'ONG et ses partie
 - **Programme de bénévolat** : Inscription des bénévoles potentiels
 - **Contact** : Formulaire de contact pour les requêtes
 - ***Partie 2: Module:**  Admin*
+- **Partie 3:** Integration d'un API Rest et des appel avec Javascript
 
 ## Technologies Utilisées
 
@@ -55,13 +55,10 @@ python init_db.py --reset
    flask --app app.py --debug run
    ```
 
-
    ## Pour se connecter
 
    **email**: admin@example.com
    **mot de passe**: Test1#test1#
-
-
 
 Ou se referer  au fichier init_db.py
 
@@ -88,7 +85,7 @@ ngo_website/
 
 ## Contribution
 
-Ceci est le projet 1 et la partie 2 développé dans le cadre du cours MGL7030-WEB Hiver 2025 à l'UQAM.
+Ceci est le projet la totalité du projet avec 3  étapes développé dans le cadre du cours MGL7030-WEB Hiver 2025 à l'UQAM.
 Abass  SARR
 SARA07349709
 Portfolio: [https://gekyume.vercel.app](https://gekyume.vercel.app)
